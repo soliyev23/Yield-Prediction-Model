@@ -116,16 +116,3 @@ joblib
 matplotlib
 seaborn
 ```
-
-## Лицензия
-
-MIT
-
-## Авторы
-
-[Ваше имя]
-
-## Контакты
-
-- GitHub: [@your-username]
-- Email: your.email@example.com
