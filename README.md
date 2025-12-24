@@ -1,12 +1,12 @@
-# Модель прогнозирования урожайности
+# Yield Prediction Model
 
-Проект по прогнозированию урожайности с использованием ансамблевых методов машинного обучения (Stacking Regressor с Random Forest и Extra Trees).
+A project focused on predicting agricultural yields using ensemble machine learning methods (Stacking Regressor with Random Forest and Extra Trees).
 
-## Описание проекта
+## Project Description
 
-Данный проект представляет собой модель машинного обучения для прогнозирования урожайности на основе различных параметров. Модель использует ансамблевый подход, комбинируя Random Forest и Extra Trees Regressor через Stacking.
+This project features a machine learning model designed to predict crop yields based on various parameters. The model utilizes an ensemble approach, combining Random Forest and Extra Trees Regressors through a Stacking strategy to improve predictive accuracy.
 
-## Технологии
+## Tech Stack
 
 - Python 3.x
 - scikit-learn
@@ -15,22 +15,19 @@
 - optuna
 - joblib
 
-## Установка
+## Installation
 
-```bash
-# Клонировать репозиторий
+# Клонировать репозиторий / Clone the repository
 git clone https://github.com/your-username/yield-prediction.git
 
-# Перейти в директорию проекта
+# Перейти в директорию проекта / Navigate to project directory
 cd yield-prediction
 
-# Установить зависимости
+# Установить зависимости / Install dependencies
 pip install -r requirements.txt
-```
 
-## Структура проекта
+## Project Structure
 
-```
 ├── data/
 │   ├── train.csv
 │   ├── test.csv
@@ -41,34 +38,30 @@ pip install -r requirements.txt
 │   └── model_development.ipynb
 ├── README.md
 └── requirements.txt
-```
 
-## Использование
+## Usage
 
-### Подготовка данных
+### Data Preparation
 
-```python
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-# Загрузка данных
+# Load data
 train = pd.read_csv("train.csv")
 test = pd.read_csv("test.csv")
 
-# Предобработка
+# Preprocessing
 train = train.drop(columns=["id", "Row#"])
 X = train.drop(columns=['yield'])
 y = train['yield']
 
-# Разделение данных
+# Data splitting
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-```
 
-### Оптимизация гиперпараметров
+### Hyperparameter Optimization
 
-Проект использует Optuna для автоматической оптимизации гиперпараметров моделей. Результаты оптимизации сохраняются в SQLite базе данных.
+The project uses Optuna for automated hyperparameter optimization. Results are stored in a SQLite database.
 
-```python
 study = optuna.create_study(
     storage="sqlite:///optuna.db",
     study_name="tuning",
@@ -76,38 +69,34 @@ study = optuna.create_study(
     direction="minimize"
 )
 study.optimize(objective, n_trials=30)
-```
 
-### Обучение модели
+### Model Training
 
-```python
-# Создание финального пайплайна
+# Create final pipeline
 final_pipeline = Pipeline([
     ('scaler', StandardScaler()),
     ('selector', VarianceThreshold(threshold=0.01)),
     ('model', final_model)
 ])
 
-# Обучение модели
+# Fit the model
 final_pipeline.fit(X_train, y_train)
-```
 
-## Особенности модели
+## Key Features
 
-- Использование ансамблевого метода (Stacking) с двумя базовыми моделями
-- Автоматическая оптимизация гиперпараметров с помощью Optuna
-- Предобработка данных с помощью StandardScaler
-- Отбор признаков с помощью VarianceThreshold
-- Сохранение истории оптимизации в SQLite базе данных
+- Ensemble Learning: Uses a Stacking Regressor with two base models for better generalization.
+- Automated Tuning: Hyperparameter optimization via Optuna.
+- Data Preprocessing: Standard scaling using StandardScaler.
+- Feature Selection: Automated feature selection using VarianceThreshold.
+- Persistence: Optimization history is saved in a local SQLite database.
 
-## Метрики качества
+## Quality Metrics
 
-Модель оценивается с помощью Mean Absolute Error (MAE). Текущая версия модели достигает следующих результатов:
-- MAE на тестовой выборке: [вставьте ваше значение]
+The model is evaluated using Mean Absolute Error (MAE). 
+- MAE on test set: [Insert your value here]
 
-## Requirements.txt
+## Requirements List (requirements.txt)
 
-```
 pandas
 numpy
 scikit-learn
@@ -115,4 +104,3 @@ optuna
 joblib
 matplotlib
 seaborn
-```
