@@ -26,19 +26,6 @@ cd yield-prediction
 # Install dependencies
 pip install -r requirements.txt
 
-## Project Structure
-
-├── data/
-│   ├── train.csv
-│   ├── test.csv
-│   └── sample_submission.csv
-├── models/
-│   └── final_model.joblib
-├── notebooks/
-│   └── model_development.ipynb
-├── README.md
-└── requirements.txt
-
 ## Usage
 
 ### Data Preparation
