@@ -17,13 +17,13 @@ This project features a machine learning model designed to predict crop yields b
 
 ## Installation
 
-# Клонировать репозиторий / Clone the repository
+# Clone the repository
 git clone https://github.com/your-username/yield-prediction.git
 
-# Перейти в директорию проекта / Navigate to project directory
+# Navigate to project directory
 cd yield-prediction
 
-# Установить зависимости / Install dependencies
+# Install dependencies
 pip install -r requirements.txt
 
 ## Project Structure
